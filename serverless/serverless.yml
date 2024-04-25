@@ -1,0 +1,17 @@
+# for serverless deployment we need access key and value, you can generate the same from aws IAM console
+service: my-api
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  # similarly you can add more functions here and serverless would create them in the aws
+  # if you remove any function from here it will remove it from the aws
+  youTubeHelloFun:
+    handler: hello.handler #inside hello file we are exporting handler function
+    events: # under events we specify the triggers for the lambda function
+      - httpApi: 
+          path: /hello
+          method: GET
